@@ -7,304 +7,90 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
-    --gold: #C9A84C;
-    --gold-light: #E8D5A3;
-    --gold-dark: #8B6914;
-    --bg: #0D0D0D;
-    --bg2: #161616;
-    --bg3: #1E1E1E;
-    --border: rgba(201,168,76,0.2);
-    --border-hover: rgba(201,168,76,0.5);
-    --text: #F0EDE6;
-    --text-muted: #8A8680;
-    --text-subtle: #4A4844;
-    --green: #2D9E6B;
-    --green-bg: rgba(45,158,107,0.12);
-    --amber: #D4900A;
-    --amber-bg: rgba(212,144,10,0.12);
-    --gray: #5A5856;
-    --gray-bg: rgba(90,88,86,0.12);
-    --radius: 12px;
-    --radius-sm: 8px;
+    --gold: #C9A84C; --gold-light: #E8D5A3; --gold-dark: #8B6914;
+    --bg: #0D0D0D; --bg2: #161616; --bg3: #1E1E1E;
+    --border: rgba(201,168,76,0.2); --border-hover: rgba(201,168,76,0.5);
+    --text: #F0EDE6; --text-muted: #8A8680; --text-subtle: #4A4844;
+    --green: #2D9E6B; --amber: #D4900A; --gray: #5A5856;
+    --radius: 12px; --radius-sm: 8px;
   }
-
   html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    line-height: 1.6;
-  }
-
-  /* Background texture */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(201,168,76,0.08) 0%, transparent 70%);
-    pointer-events: none;
-    z-index: 0;
-  }
-
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; line-height: 1.6; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(201,168,76,0.08) 0%, transparent 70%); pointer-events: none; z-index: 0; }
   .page { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
-
-  /* Header */
   .header { text-align: center; margin-bottom: 3rem; }
-  .header-badge {
-    display: inline-block;
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--gold);
-    border: 0.5px solid var(--border);
-    padding: 6px 16px;
-    border-radius: 100px;
-    margin-bottom: 1.25rem;
-  }
-  .header h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(24px, 5vw, 36px);
-    font-weight: 500;
-    color: var(--text);
-    line-height: 1.25;
-    margin-bottom: 1.25rem;
-  }
+  .header-badge { display: inline-block; font-size: 10px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); border: 0.5px solid var(--border); padding: 6px 16px; border-radius: 100px; margin-bottom: 1.25rem; }
+  .header h1 { font-family: 'Playfair Display', serif; font-size: clamp(24px, 5vw, 36px); font-weight: 500; color: var(--text); line-height: 1.25; margin-bottom: 1.25rem; }
   .header h1 em { color: var(--gold); font-style: normal; }
-
-  .erlaeuterung {
-    background: var(--bg2);
-    border: 0.5px solid var(--border);
-    border-radius: var(--radius);
-    padding: 1rem 1.25rem;
-    font-size: 13px;
-    color: var(--text-muted);
-    line-height: 1.7;
-    text-align: left;
-  }
-  .erlaeuterung strong { color: var(--gold-light); font-weight: 500; }
-
-  /* Progress */
+  .erlaeuterung { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 1rem 1.25rem; font-size: 13px; color: var(--text-muted); line-height: 1.7; text-align: left; }
+  .erlaeuterung strong { color: var(--gold-light); font-weight: 500; display: block; margin-bottom: 0.35rem; font-size: 14px; }
   .progress-wrap { margin-bottom: 2.5rem; }
   .progress-info { display: flex; justify-content: space-between; font-size: 12px; color: var(--text-subtle); margin-bottom: 8px; }
   .progress-bg { height: 2px; background: var(--bg3); border-radius: 1px; }
-  .progress-fill { height: 2px; background: linear-gradient(90deg, var(--gold-dark), var(--gold)); border-radius: 1px; transition: width 0.4s ease; }
-
-  /* Question cards */
-  .frage-card {
-    background: var(--bg2);
-    border: 0.5px solid var(--border);
-    border-radius: var(--radius);
-    padding: 1.5rem;
-    margin-bottom: 1rem;
-    transition: border-color 0.2s;
-  }
+  .progress-fill { height: 2px; background: linear-gradient(90deg, var(--gold-dark), var(--gold)); border-radius: 1px; width: 100%; }
+  .frage-card { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 1.5rem; margin-bottom: 1rem; transition: border-color 0.2s; }
   .frage-card:hover { border-color: var(--border-hover); }
-  .frage-nr {
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 0.5rem;
-  }
-  .frage-text {
-    font-size: 15px;
-    font-weight: 400;
-    color: var(--text);
-    margin-bottom: 1.25rem;
-    line-height: 1.55;
-  }
-
-  /* Slider */
+  .frage-nr { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+  .frage-text { font-size: 15px; font-weight: 400; color: var(--text); margin-bottom: 1.25rem; line-height: 1.55; }
   .slider-row { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
   .slider-endval { font-size: 11px; color: var(--text-subtle); min-width: 10px; text-align: center; }
-  .slider-current {
-    font-family: 'Playfair Display', serif;
-    font-size: 26px;
-    font-weight: 400;
-    color: var(--gold);
-    min-width: 36px;
-    text-align: center;
-  }
-
-  input[type=range] {
-    flex: 1;
-    -webkit-appearance: none;
-    appearance: none;
-    height: 2px;
-    background: var(--bg3);
-    border-radius: 1px;
-    outline: none;
-    cursor: pointer;
-    position: relative;
-  }
-  input[type=range]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 18px; height: 18px;
-    border-radius: 50%;
-    background: var(--gold);
-    border: 2px solid var(--bg2);
-    cursor: pointer;
-    transition: transform 0.15s, background 0.15s;
-  }
+  .slider-current { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 400; color: var(--gold); min-width: 36px; text-align: center; }
+  input[type=range] { flex: 1; -webkit-appearance: none; appearance: none; height: 2px; background: var(--bg3); border-radius: 1px; outline: none; cursor: pointer; }
+  input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%; background: var(--gold); border: 2px solid var(--bg2); cursor: pointer; transition: transform 0.15s; }
   input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
-  input[type=range]::-moz-range-thumb {
-    width: 18px; height: 18px;
-    border-radius: 50%;
-    background: var(--gold);
-    border: 2px solid var(--bg2);
-    cursor: pointer;
-  }
-
+  input[type=range]::-moz-range-thumb { width: 18px; height: 18px; border-radius: 50%; background: var(--gold); border: 2px solid var(--bg2); cursor: pointer; }
   .scale-labels { display: flex; justify-content: space-between; font-size: 11px; color: var(--text-subtle); padding: 0 2px; }
-
-  /* Submit button */
-  .submit-btn {
-    width: 100%;
-    padding: 1rem;
-    margin-top: 1.5rem;
-    background: var(--gold);
-    color: var(--bg);
-    border: none;
-    border-radius: var(--radius-sm);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 15px;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    cursor: pointer;
-    transition: opacity 0.2s, transform 0.15s;
-  }
+  .submit-btn { width: 100%; padding: 1rem; margin-top: 1.5rem; background: var(--gold); color: var(--bg); border: none; border-radius: var(--radius-sm); font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500; letter-spacing: 0.02em; cursor: pointer; transition: opacity 0.2s, transform 0.15s; }
   .submit-btn:hover { opacity: 0.9; transform: translateY(-1px); }
-  .submit-btn:active { transform: translateY(0); }
-
-  /* Result */
-  .result-page { display: none !important; }
-  .result-page.visible { display: block !important; }
-  .score-hero {
-    text-align: center;
-    padding: 2.5rem 2rem;
-    border-radius: var(--radius);
-    border: 0.5px solid var(--border);
-    margin-bottom: 2rem;
-    position: relative;
-    overflow: hidden;
-  }
-  .score-hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    opacity: 0.06;
-    background: radial-gradient(ellipse at 50% 0%, var(--gold) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .score-label-top {
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--text-subtle);
-    margin-bottom: 1rem;
-  }
-  .score-big {
-    font-family: 'Playfair Display', serif;
-    font-size: 80px;
-    font-weight: 400;
-    line-height: 1;
-    margin-bottom: 0.25rem;
-  }
+  .result-page { display: none; }
+  .result-page.visible { display: block; }
+  .score-hero { text-align: center; padding: 2.5rem 2rem; border-radius: var(--radius); border: 0.5px solid var(--border); margin-bottom: 2rem; position: relative; overflow: hidden; }
+  .score-hero::before { content: ''; position: absolute; inset: 0; opacity: 0.06; background: radial-gradient(ellipse at 50% 0%, var(--gold) 0%, transparent 70%); pointer-events: none; }
+  .score-label-top { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-subtle); margin-bottom: 1rem; }
+  .score-big { font-family: 'Playfair Display', serif; font-size: 80px; font-weight: 400; line-height: 1; margin-bottom: 0.25rem; }
   .score-of { font-size: 16px; color: var(--text-subtle); margin-bottom: 1.25rem; }
-  .score-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 20px;
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-    line-height: 1.3;
-  }
+  .score-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 500; margin-bottom: 0.5rem; line-height: 1.3; }
   .score-subtitle { font-size: 13px; color: var(--text-muted); max-width: 420px; margin: 0 auto; line-height: 1.7; }
-
-  /* Breakdown */
-  .section-label {
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--text-subtle);
-    margin-bottom: 1rem;
-  }
+  .section-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-subtle); margin-bottom: 1rem; }
   .b-grid { display: grid; gap: 8px; margin-bottom: 2rem; }
-  .b-row {
-    background: var(--bg2);
-    border: 0.5px solid var(--border);
-    border-radius: var(--radius-sm);
-    padding: 0.875rem 1.125rem;
-  }
+  .b-row { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--radius-sm); padding: 0.875rem 1.125rem; }
   .b-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 8px; }
   .b-name { font-size: 13px; color: var(--text-muted); flex: 1; line-height: 1.4; }
   .b-val { font-family: 'Playfair Display', serif; font-size: 16px; color: var(--text); white-space: nowrap; }
   .b-bar-bg { height: 3px; background: var(--bg3); border-radius: 2px; }
   .b-bar-fill { height: 3px; border-radius: 2px; transition: width 0.7s cubic-bezier(0.4,0,0.2,1); }
-
-  .reset-btn {
-    width: 100%;
-    padding: 0.8rem;
-    background: transparent;
-    border: 0.5px solid rgba(201,168,76,0.25);
-    border-radius: var(--radius-sm);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
-    color: var(--text-muted);
-    cursor: pointer;
-    transition: border-color 0.2s, color 0.2s;
-  }
+  .reset-btn { width: 100%; padding: 0.8rem; background: transparent; border: 0.5px solid rgba(201,168,76,0.25); border-radius: var(--radius-sm); font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text-muted); cursor: pointer; transition: border-color 0.2s, color 0.2s; }
   .reset-btn:hover { border-color: var(--border-hover); color: var(--text); }
-
-  /* Divider */
   .divider { height: 0.5px; background: var(--border); margin: 2rem 0; }
-
-  @media (max-width: 480px) {
-    .page { padding: 2rem 1rem 3rem; }
-    .score-big { font-size: 64px; }
-  }
+  @media (max-width: 480px) { .page { padding: 2rem 1rem 3rem; } .score-big { font-size: 64px; } }
 </style>
 </head>
 <body>
 <div class="page">
 
-  <!-- FORM -->
   <div id="form-view">
     <div class="header">
       <div class="header-badge">Selbsteinschätzung</div>
       <h1>Potenzialeinschätzung<br><em>Lightstyle Retreat</em></h1>
       <div class="erlaeuterung">
-        <strong>Was ist Lifestyle?</strong> Ernährung, Sport &amp; Bewegung, Schlaf und bewusste Erholung –
-        Massage, Sauna, Cold-Plunges, Floaten, Infrarot u.v.m.
+        <strong>Warum Lightstyle?</strong>
+        Lightstyle ist unser Weg, einen gesunden Lifestyle zu pflegen und zu leben. Er beinhaltet keine Verbote, Diäten oder Zwänge, sondern sollte sich leicht anfühlen und auch Spass machen. Der Lightstyle beinhaltet eine optimale Trainings-, Schlaf- und Ernährungsroutine wie auch bewusste Erholungsphasen &ndash; nicht nur für Longevity, aber vor allem für einen langen Healthspan!
       </div>
     </div>
-
     <div class="progress-wrap">
-      <div class="progress-info">
-        <span>Deine Einschätzung</span>
-        <span>10 Fragen</span>
-      </div>
-      <div class="progress-bg"><div class="progress-fill" style="width:100%"></div></div>
+      <div class="progress-info"><span>Deine Einschätzung</span><span>10 Fragen</span></div>
+      <div class="progress-bg"><div class="progress-fill"></div></div>
     </div>
-
     <div id="questions-container"></div>
-
-    <button class="submit-btn" onclick="showResult()">Auswertung anzeigen →</button>
+    <button class="submit-btn" onclick="showResult()">Auswertung anzeigen &rarr;</button>
   </div>
 
-  <!-- RESULT -->
   <div id="result-view" class="result-page">
     <div class="header">
       <div class="header-badge">Dein Ergebnis</div>
       <h1>Potenzialeinschätzung<br><em>Lightstyle Retreat</em></h1>
     </div>
-
     <div class="score-hero" id="score-hero">
       <div class="score-label-top">Dein Score</div>
       <div class="score-big" id="res-score">0</div>
@@ -312,28 +98,25 @@
       <div class="score-title" id="res-title"></div>
       <div class="score-subtitle" id="res-subtitle"></div>
     </div>
-
     <div class="section-label">Antworten im Detail</div>
     <div class="b-grid" id="breakdown"></div>
-
     <div class="divider"></div>
-    <button class="reset-btn" onclick="resetForm()">↺ &nbsp;Erneut ausfüllen</button>
+    <button class="reset-btn" onclick="resetForm()">&#8635;&nbsp;&nbsp;Erneut ausfüllen</button>
   </div>
 
 </div>
-
 <script>
   const fragen = [
-    { id:'q1',  text:'Wie fit fühlst du dich?',                                                                                              lo:'Gar nicht fit',         hi:'Topfit',                      invert:false },
-    { id:'q2',  text:'Wie stark hat sich dein Aussehen (Fettanteil) in den letzten 10 Jahren ins Negative verändert?',                        lo:'Gar nicht / sogar besser', hi:'Stark zugenommen',          invert:false },
-    { id:'q3',  text:'Wie oft gibt es in der Partnerschaft Diskussionen wegen Lifestyle / Aussehen?',                                         lo:'Nie',                   hi:'Täglich',                     invert:false },
+    { id:'q1',  text:'Wie fit fühlst du dich?', lo:'Gar nicht fit', hi:'Topfit', invert:false },
+    { id:'q2',  text:'Wie stark hat sich dein Aussehen (z.B. Fettanteil) in den letzten Jahren ins Negative verändert?', lo:'Gar nicht / sogar besser', hi:'Stark zugenommen', invert:false },
+    { id:'q3',  text:'Wie oft gibt es in der Partnerschaft Diskussionen wegen Lifestyle / Aussehen?', lo:'Nie', hi:'Täglich', invert:false },
     { id:'q4',  text:'Wieviel Potenzial siehst du für mehr Harmonie und Verbesserung der Sexualität, wenn Aussehen und/oder Lifestyle sich verbessern würde?', lo:'Kein Potenzial', hi:'Sehr grosses Potenzial', invert:false },
-    { id:'q5',  text:'Wieviele Tage begleiten dich Kopf-, Nacken- oder Rückenschmerzen?',                                                     lo:'Keine',                 hi:'Fast täglich',                invert:false },
-    { id:'q6',  text:'Wie beurteilst du deine Performance bei der Arbeit?',                                                                   lo:'Sehr schlecht',         hi:'Ausgezeichnet',               invert:true  },
-    { id:'q7',  text:'Wieviel Potenzial siehst du für mehr Performance im Business durch einen bewussteren Lifestyle?',                        lo:'Kein Potenzial',        hi:'Sehr grosses Potenzial',      invert:false },
-    { id:'q8',  text:'Wie stark hindert dich dein Umfeld an der Umsetzung deiner Lifestyle-Ziele?',                                           lo:'Gar nicht',             hi:'Sehr stark',                  invert:false },
-    { id:'q9',  text:'Wieviel Priorität gibst du dem Faktor Lifestyle in deinem Leben?',                                                      lo:'Keine Priorität',       hi:'Höchste Priorität',           invert:false },
-    { id:'q10', text:'Wie viel wäre es dir wert, eine Strategie und einfach umsetzbare Lösungen im Alltag zu haben, um deine Lifestyle-Ziele zu erreichen?', lo:'Nichts', hi:'Sehr viel',               invert:false },
+    { id:'q5',  text:'Wieviele Tage begleiten dich Kopf-, Nacken- oder Rückenschmerzen?', lo:'Keine', hi:'Fast täglich', invert:false },
+    { id:'q6',  text:'Wie beurteilst du deine Schlafroutine (Dauer, Tiefschlaf, Erholung morgens)?', lo:'Sehr schlecht', hi:'Ausgezeichnet', invert:true },
+    { id:'q7',  text:'Wieviel Potenzial siehst du für mehr Performance im Business durch einen bewussteren Lifestyle?', lo:'Kein Potenzial', hi:'Sehr grosses Potenzial', invert:false },
+    { id:'q8',  text:'Wie stark hindert dich dein soziales Umfeld an der Umsetzung deiner Lifestyle-Ziele?', lo:'Gar nicht', hi:'Sehr stark', invert:false },
+    { id:'q9',  text:'Wieviel Priorität gibst du dem Faktor Lifestyle in deinem Leben?', lo:'Keine Priorität', hi:'Höchste Priorität', invert:false },
+    { id:'q10', text:'Wie viel wäre es dir wert, eine Strategie und einfach umsetzbare Lösungen im Alltag zu haben, um deine Gesundheit und Performance zu verbessern?', lo:'Nichts', hi:'Sehr viel', invert:false },
   ];
 
   const values = {};
@@ -345,17 +128,16 @@
     fragen.forEach((f, i) => {
       const div = document.createElement('div');
       div.className = 'frage-card';
-      div.innerHTML = `
-        <div class="frage-nr">Frage ${String(i+1).padStart(2,'0')} / ${fragen.length}</div>
-        <div class="frage-text">${f.text}</div>
-        <div class="slider-row">
-          <span class="slider-endval">0</span>
-          <input type="range" min="0" max="10" step="1" value="5" id="${f.id}" oninput="updateVal('${f.id}',this.value)">
-          <span class="slider-endval">10</span>
-          <span class="slider-current" id="${f.id}-val">5</span>
-        </div>
-        <div class="scale-labels"><span>${f.lo}</span><span>${f.hi}</span></div>
-      `;
+      div.innerHTML =
+        '<div class="frage-nr">Frage ' + String(i+1).padStart(2,'0') + ' / ' + fragen.length + '</div>' +
+        '<div class="frage-text">' + f.text + '</div>' +
+        '<div class="slider-row">' +
+          '<span class="slider-endval">0</span>' +
+          '<input type="range" min="0" max="10" step="1" value="5" id="' + f.id + '" oninput="updateVal(\'' + f.id + '\',this.value)">' +
+          '<span class="slider-endval">10</span>' +
+          '<span class="slider-current" id="' + f.id + '-val">5</span>' +
+        '</div>' +
+        '<div class="scale-labels"><span>' + f.lo + '</span><span>' + f.hi + '</span></div>';
       c.appendChild(div);
     });
   }
@@ -366,56 +148,39 @@
   }
 
   function calcScore() {
-    return fragen.reduce((sum, f) => sum + (f.invert ? 10 - values[f.id] : values[f.id]), 0);
+    return fragen.reduce(function(sum, f) {
+      return sum + (f.invert ? 10 - values[f.id] : values[f.id]);
+    }, 0);
   }
 
   function getResult(score) {
-    if (score <= 30) return {
-      title: 'Fürs Retreat weniger geeignet',
-      subtitle: 'Dein aktueller Lifestyle-Status zeigt, dass du möglicherweise noch nicht den richtigen Ausgangspunkt hast. Vielleicht gibt es andere Schritte, die zuerst sinnvoller sind.',
-      color: '#7A7875',
-      barColor: '#5A5856'
-    };
-    if (score <= 60) return {
-      title: 'Das Retreat kann dir in einigen Bereichen helfen',
-      subtitle: 'Du hast erkennbare Ansatzpunkte und würdest in gezielten Bereichen von den Strategien und dem Austausch profitieren.',
-      color: '#D4900A',
-      barColor: '#C9A84C'
-    };
-    return {
-      title: 'Das Retreat wird ein Game-Changer für dich',
-      subtitle: 'Deine Ausgangslage zeigt klares Potenzial und echten Handlungsbedarf. Du wirst vom Retreat maximal profitieren.',
-      color: '#2D9E6B',
-      barColor: '#2D9E6B'
-    };
+    if (score <= 30) return { title:'Fürs Retreat weniger geeignet', subtitle:'Dein aktueller Lifestyle-Status zeigt, dass du möglicherweise noch nicht den richtigen Ausgangspunkt hast. Vielleicht gibt es andere Schritte, die zuerst sinnvoller sind.', color:'#7A7875', barColor:'#5A5856' };
+    if (score <= 60) return { title:'Das Retreat kann dir in einigen Bereichen helfen', subtitle:'Du hast erkennbare Ansatzpunkte und würdest in gezielten Bereichen von den Strategien und dem Austausch profitieren.', color:'#D4900A', barColor:'#C9A84C' };
+    return { title:'Das Retreat wird ein Game-Changer für dich', subtitle:'Deine Ausgangslage zeigt klares Potenzial und echten Handlungsbedarf. Du wirst vom Retreat maximal profitieren.', color:'#2D9E6B', barColor:'#2D9E6B' };
   }
 
   function showResult() {
     const total = calcScore();
-    const { title, subtitle, color, barColor } = getResult(total);
-
+    const r = getResult(total);
     document.getElementById('res-score').textContent = total;
-    document.getElementById('res-score').style.color = color;
-    document.getElementById('res-title').textContent = title;
-    document.getElementById('res-title').style.color = color;
-    document.getElementById('res-subtitle').textContent = subtitle;
+    document.getElementById('res-score').style.color = r.color;
+    document.getElementById('res-title').textContent = r.title;
+    document.getElementById('res-title').style.color = r.color;
+    document.getElementById('res-subtitle').textContent = r.subtitle;
 
     const bd = document.getElementById('breakdown');
     bd.innerHTML = '';
-    fragen.forEach((f, i) => {
+    fragen.forEach(function(f, i) {
       const v = values[f.id];
       const display = f.invert ? 10 - v : v;
       const row = document.createElement('div');
       row.className = 'b-row';
-      row.innerHTML = `
-        <div class="b-top">
-          <span class="b-name">${i+1}. ${f.text}</span>
-          <span class="b-val">${display}</span>
-        </div>
-        <div class="b-bar-bg">
-          <div class="b-bar-fill" style="width:0%;background:${barColor}" data-w="${display*10}%"></div>
-        </div>
-      `;
+      row.innerHTML =
+        '<div class="b-top">' +
+          '<span class="b-name">' + (i+1) + '. ' + f.text + '</span>' +
+          '<span class="b-val">' + display + '</span>' +
+        '</div>' +
+        '<div class="b-bar-bg"><div class="b-bar-fill" style="width:0%;background:' + r.barColor + '" data-w="' + (display*10) + '%"></div></div>';
       bd.appendChild(row);
     });
 
@@ -423,15 +188,15 @@
     document.getElementById('result-view').classList.add('visible');
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    setTimeout(() => {
-      document.querySelectorAll('.b-bar-fill').forEach(el => {
+    setTimeout(function() {
+      document.querySelectorAll('.b-bar-fill').forEach(function(el) {
         el.style.width = el.dataset.w;
       });
     }, 100);
   }
 
   function resetForm() {
-    fragen.forEach(f => {
+    fragen.forEach(function(f) {
       values[f.id] = 5;
       const inp = document.getElementById(f.id);
       if (inp) { inp.value = 5; document.getElementById(f.id+'-val').textContent = '5'; }
@@ -441,13 +206,12 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  buildForm();
-
-  // Sicherstellen dass beim Laden immer der Fragebogen sichtbar ist
   window.addEventListener('DOMContentLoaded', function() {
     document.getElementById('form-view').style.display = 'block';
-    document.getElementById('result-view').style.display = 'none';
+    document.getElementById('result-view').classList.remove('visible');
   });
+
+  buildForm();
 </script>
 </body>
 </html>
